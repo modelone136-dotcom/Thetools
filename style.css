@@ -1,0 +1,475 @@
+/* --- GLOBAL --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #ffffff; color: #111; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.section-padding { padding: 80px 5%; }
+.center-text { text-align: center; }
+.section-title { font-size: 32px; margin-bottom: 10px; }
+.section-subtitle { color: #666; margin-bottom: 40px; }
+
+/* --- BUTTONS --- */
+.btn-outline-dark { display: inline-block; border: 1px solid #111; padding: 10px 25px; border-radius: 25px; font-weight: bold; transition: 0.3s; }
+.btn-outline-dark i { background: #111; color: #fff; border-radius: 50%; padding: 6px; margin-left: 10px; font-size: 12px; }
+.btn-banner { display: inline-block; border: 1px solid #111; padding: 8px 20px; border-radius: 25px; font-size: 14px; }
+.btn-banner i { background: #111; color: #fff; border-radius: 50%; padding: 5px; margin-left: 8px; }
+
+/* --- HEADER & NAV --- */
+.top-bar { background: #111; color: #fff; font-size: 12px; display: flex; justify-content: space-between; padding: 8px 5%; }
+.social-icons i { margin-right: 15px; cursor: pointer; }
+.top-settings span { margin-left: 20px; cursor: pointer; }
+.main-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; }
+.search-container { display: flex; border: 1px solid #ccc; border-radius: 25px; padding: 5px 15px; width: 40%; }
+.search-container input { border: none; outline: none; width: 100%; padding: 5px; }
+.search-container button { background: none; border: none; cursor: pointer; }
+.header-icons i { font-size: 20px; margin-left: 20px; cursor: pointer; }
+.main-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; }
+.nav-left { display: flex; align-items: center; gap: 30px; }
+.collection-btn { background: #111; color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+.nav-links { display: flex; gap: 20px; font-weight: 500; }
+.nav-links .active { background: #f4f4f4; padding: 5px 15px; border-radius: 15px; }
+.contact-info { display: flex; align-items: center; gap: 10px; }
+
+/* --- HERO CAROUSEL --- */
+.hero { 
+    height: 500px; 
+    display: flex; 
+    align-items: center; 
+    position: relative; 
+    overflow: hidden; /* Hides the slides that are off-screen */
+    padding: 0; 
+    background-color: #f4f4f4; /* Fallback color */
+}
+
+/* Base style for every slide */
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.6s ease-in-out; /* Creates the smooth fade effect */
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* The slide that is currently visible */
+.hero-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Ensure the arrows sit on top of everything */
+.hero-arrows { 
+    position: absolute; 
+    left: 2%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    z-index: 10; 
+}
+
+.hero-arrows button { 
+    background: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+    cursor: pointer; 
+}
+
+.hero-content { 
+    max-width: 400px; 
+    background: rgba(255,255,255,0.9); 
+    padding: 30px; 
+    border-radius: 10px; 
+    margin-left: 8%; /* Keeps the white box aligned properly */
+}
+
+.hero-content h1 { font-size: 36px; margin-bottom: 10px; }
+.hero-content p { margin-bottom: 20px; color: #555; }
+
+/* --- COLLECTIONS --- */
+.collections-section { display: flex; padding: 60px 5%; gap: 40px; align-items: center; }
+.collections-intro { flex: 1; min-width: 250px; }
+.collections-intro h2 { font-size: 28px; margin-bottom: 15px; }
+.collections-intro p { margin-bottom: 20px; color: #666; }
+.collections-grid { flex: 3; display: flex; gap: 20px; overflow-x: auto; }
+.collection-card { 
+    text-align: center; 
+    flex-shrink: 0; /* Tells Flexbox not to squish this card */
+    min-width: 200px; /* Forces the card to give the circle enough room */
+}
+
+.image-circle { 
+    width: 200px; 
+    height: 200px; 
+    background: #f4f4f4; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 15px; 
+    flex-shrink: 0; /* Ensures the circle itself doesn't shrink */
+}
+.image-circle img { max-width: 70%; }
+
+/* --- PRODUCT CARDS --- */
+/* --- PRODUCT CARDS --- */
+/* --- PRODUCT CARDS (STRICT HEIGHT FIX) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.product-card {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 1. We lock the gray box to EXACTLY 280px tall, no matter what */
+.product-card .img-bg {
+    background: #f0f0f0;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    /* The !important tags stop images from breaking the rules */
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+
+    overflow: hidden;
+    padding: 0 !important; /* Removes padding that might stretch the box */
+}
+
+/* 2. We force the image to fit perfectly inside that locked box */
+.product-card .img-bg img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+.product-card .category {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.product-card h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* 3. We guarantee the price and stars always touch the bottom */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto !important;
+}
+
+.price-row .price {
+    font-weight: bold;
+}
+
+.price-row .stars {
+    color: #f1c40f;
+    font-size: 12px;
+}
+
+/* --- PROMO BANNERS --- */
+/* --- PROMO BANNERS (UPDATED LAYOUT) --- */
+.promo-banners { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+}
+
+.banner { 
+    border-radius: 15px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    overflow: hidden; /* Keeps the images from spilling out of the rounded corners */
+    position: relative;
+    min-height: 240px;
+    padding: 30px;
+}
+
+/* Background Colors */
+.banner-1 { background-color: #e8e8e8; } /* Light textured gray */
+.banner-2.bg-dark { background-color: #050505; color: #fff; } /* Black */
+.banner-3 { background-color: #e5c3aa; } /* Peach/Tan */
+
+.banner-content { 
+    z-index: 2; /* Keeps text above the image */
+    max-width: 60%; 
+}
+
+/* Position the images perfectly on the right edge */
+.banner-img { 
+    position: absolute; 
+    right: 0; 
+    bottom: 0; 
+    max-height: 90%; 
+    object-fit: contain; 
+    z-index: 1; 
+}
+
+.banner small { 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    font-size: 10px; 
+    letter-spacing: 1px; 
+    display: block; 
+}
+
+.banner h3 { 
+    font-size: 20px; 
+    margin-bottom: 15px; 
+    line-height: 1.3; 
+}
+
+.banner .price-tag { 
+    font-size: 14px; 
+    margin-bottom: 20px; 
+}
+
+/* Updated Button Styles */
+.banner-buttons { display: flex; gap: 10px; align-items: center; }
+
+.banner-buttons .btn-banner { 
+    border: 1px solid #111; 
+    padding: 8px 20px; 
+    border-radius: 25px; 
+    font-size: 14px; 
+    color: #111;
+    align: center;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.banner-buttons .cart-icon-btn {
+    background-color: #111;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #111;
+    transition: all 0.3s ease;
+}
+
+/* Specific colors for the Dark Banner */
+.banner-2 .btn-banner.outline-white { border-color: #fff; color: #fff; }
+.banner-2 .cart-icon-btn.white-btn { background-color: #fff; color: #111; border-color: #fff; }
+
+/* --- BANNER HOVER EFFECTS --- */
+.banner-buttons .btn-banner:hover { 
+    background-color: #111; 
+    color: #fff; 
+}
+.banner-2 .btn-banner.outline-white:hover { 
+    background-color: #fff; 
+    color: #111; 
+}
+
+/* Invert the circular cart buttons on hover */
+.banner-buttons .cart-icon-btn:hover { 
+    background-color: transparent; 
+    color: #111; 
+}
+.banner-2 .cart-icon-btn.white-btn:hover { 
+    background-color: transparent; 
+    color: #fff; 
+}
+
+/* --- DEALS SECTION --- */
+.deals-banner { background: #f4f4f4; border-radius: 20px; padding: 40px 50px; display: flex; justify-content: space-between; align-items: center; position: relative; }
+.deals-text { max-width: 300px; }
+.deals-text h2 { font-size: 32px; margin-bottom: 10px; }
+.deals-text p { color: #666; }
+.deals-center-img { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); height: 130%; z-index: 10; }
+.deals-timer { display: flex; gap: 15px; text-align: center; }
+.time-box { display: flex; flex-direction: column; border-right: 1px solid #ccc; padding-right: 15px; }
+.time-box:last-child { border-right: none; }
+.time-box span { font-size: 12px; color: #666; margin-bottom: 5px; }
+.time-box strong { font-size: 28px; }
+.flex-row-card { display: flex; gap: 20px; align-items: center; }
+.flex-row-card .small-img { width: 120px; margin-bottom: 0; }
+
+/* --- ABOUT US --- */
+.about-section { display: flex; gap: 50px; align-items: center; }
+.about-image { flex: 1; border-radius: 20px; overflow: hidden; }
+.about-image img { width: 100%; display: block; }
+.about-content { flex: 1; }
+.about-content strong { color: #111; display: block; margin-bottom: 10px; }
+.about-content h2 { font-size: 36px; line-height: 1.2; margin-bottom: 20px; }
+.about-content p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+.stats-grid h3 { font-size: 24px; }
+.stats-grid p { font-size: 12px; color: #666; }
+
+/* --- FEATURES --- */
+.features-section { display: flex; justify-content: space-between; text-align: left; }
+.feature { flex: 1; padding: 0 20px; }
+.icon-circle { width: 60px; height: 60px; background: #111; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+.icon-circle.gold-bg { background: #e6b800; }
+.feature h4 { margin-bottom: 10px; font-size: 18px; }
+.feature p { color: #666; font-size: 14px; }
+
+/* --- TESTIMONIALS --- */
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.test-card { background: #f9f9f9; padding: 30px; border-radius: 15px; text-align: left; }
+.test-card .stars { color: #f1c40f; margin-bottom: 15px; }
+.test-text { color: #555; line-height: 1.6; margin-bottom: 30px; font-size: 14px; }
+.test-author { display: flex; align-items: center; gap: 15px; position: relative; }
+.test-author img { width: 50px; height: 50px; border-radius: 50%; }
+.test-author h4 { font-size: 16px; margin-bottom: 5px; }
+.test-author p { font-size: 12px; color: #888; }
+.quote-icon { position: absolute; right: 0; font-size: 40px; color: #ddd; }
+
+/* --- FOOTER --- */
+.site-footer { background: #1a1a1a; color: #fff; padding: 60px 5% 30px; }
+.footer-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 40px; margin-bottom: 40px; }
+.footer-top h2 { font-size: 28px; }
+.newsletter { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #666; padding-bottom: 5px; }
+.newsletter input { background: transparent; border: none; color: #fff; padding: 10px; outline: none; }
+.newsletter button { background: transparent; border: 1px solid #fff; color: #fff; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+.newsletter .send-icon { background: #fff; color: #111; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+.footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+.footer-col h3 { font-size: 24px; margin-bottom: 20px; }
+.footer-col h4 { font-size: 16px; margin-bottom: 25px; text-transform: uppercase; }
+.brand-col p { color: #aaa; line-height: 1.6; margin-bottom: 20px; font-size: 14px; }
+.footer-socials { display: flex; gap: 10px; }
+.footer-socials i { width: 35px; height: 35px; background: #fff; color: #111; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+.footer-col ul li { margin-bottom: 15px; }
+.footer-col ul li a { color: #aaa; font-size: 14px; }
+.btn-buy-now { background: #fff; color: #111; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+.contact-item { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 20px; }
+.contact-item i { background: #fff; color: #111; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+.contact-item strong { display: block; margin-bottom: 5px; }
+.contact-item small { color: #aaa; }
+.insta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.insta-grid img { width: 100%; border-radius: 8px; }
+/* --- DEALS SECTION --- */
+.deals-section { background-color: #ffffff; }
+.deals-banner { background: #f4f4f4; border-radius: 20px; padding: 50px; display: flex; justify-content: space-between; align-items: center; position: relative; margin-bottom: 60px; }
+.deals-text { max-width: 350px; }
+.deals-text h2 { font-size: 32px; margin-bottom: 10px; }
+.deals-text p { color: #666; font-size: 14px; }
+.deals-center-img { position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%); height: 140%; z-index: 10; object-fit: contain; }
+.deals-timer { display: flex; gap: 20px; text-align: center; z-index: 1; }
+.time-box { display: flex; flex-direction: column; border-right: 1px solid #ddd; padding-right: 20px; }
+.time-box:last-child { border-right: none; padding-right: 0; }
+.time-box span { font-size: 10px; color: #666; letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase; }
+.time-box strong { font-size: 32px; font-weight: bold; }
+
+.deals-products { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.flex-row-card { display: flex; gap: 20px; align-items: center; background: transparent; box-shadow: none; padding: 0; }
+.flex-row-card .small-img { width: 140px; height: 140px; margin-bottom: 0; flex-shrink: 0; }
+.flex-row-card .card-details { display: flex; flex-direction: column; justify-content: center; }
+
+/* --- ABOUT US SECTION --- */
+.about-section { display: flex; gap: 60px; align-items: center; }
+.about-image-wrapper { flex: 1; position: relative; border-radius: 20px; overflow: hidden; display: flex; align-items: flex-end; }
+.about-image-wrapper img { width: 100%; display: block; border-radius: 20px; }
+.outline-text-bg { position: absolute; bottom: 20px; left: 20px; font-size: 60px; font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7); letter-spacing: 5px; font-family: sans-serif; pointer-events: none; }
+
+.about-content { flex: 1; padding-right: 20px; }
+.small-heading { display: block; font-weight: bold; margin-bottom: 15px; font-size: 14px; }
+.about-content h2 { font-size: 32px; line-height: 1.3; margin-bottom: 25px; }
+.about-content p { color: #666; margin-bottom: 30px; line-height: 1.8; font-size: 14px; }
+.about-content .btn-outline-dark { margin-bottom: 40px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 30px; }
+.stats-grid h3 { font-size: 22px; font-weight: 800; margin-bottom: 5px; }
+.stats-grid p { font-size: 12px; color: #888; margin: 0; }
+/* --- BUTTON HOVER EFFECTS (Invert Colors) --- */
+
+/* 1. General Outline Buttons (Black text -> Black background) */
+.btn-outline-dark {
+    transition: all 0.3s ease; /* Makes the change smooth */
+}
+.btn-outline-dark:hover {
+    background-color: #111;
+    color: #fff;
+}
+.btn-outline-dark:hover i {
+    background-color: #fff; /* Inverts the little arrow icon too */
+    color: #111;
+}
+
+/* 2. Banner Buttons (Light backgrounds) */
+.btn-banner {
+    transition: all 0.3s ease;
+}
+.btn-banner:hover {
+    background-color: #111;
+    color: #fff;
+}
+.btn-banner:hover i {
+    background-color: #fff;
+    color: #111;
+}
+
+/* 3. Banner Buttons (Dark background - White text -> White background) */
+.banner.bg-dark .btn-banner:hover {
+    background-color: #fff;
+    color: #111;
+}
+.banner.bg-dark .btn-banner:hover i {
+    background-color: #111;
+    color: #fff;
+}
+
+/* 4. Footer "Buy Now" Button (White background -> Black background) */
+.btn-buy-now {
+    transition: all 0.3s ease;
+}
+.btn-buy-now:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+/* 5. Newsletter Subscribe Button (Transparent/White -> White background) */
+.newsletter button {
+    transition: all 0.3s ease;
+}
+.newsletter button:hover {
+    background-color: #fff;
+    color: #111;
+}
+
+/* 6. Hero Slider Arrows */
+.hero-arrows button {
+    transition: all 0.3s ease;
+}
+/* Inactive arrows turn dark on hover */
+.hero-arrows button:hover {
+    background-color: #111;
+    color: #fff;
+    border-color: #111;
+}
+/* The active arrow (first one) turns light on hover */
+.hero-arrows button:first-child:hover {
+    background-color: #fff;
+    color: #111;
+    border-color: #ccc;
+}

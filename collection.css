@@ -1,0 +1,187 @@
+/* =========================================
+   COLLECTION PAGE STYLES
+========================================= */
+/* --- LUXURY 4-COLUMN GRID --- */
+.luxury-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Make it mobile-friendly so it doesn't squish on small screens */
+@media (max-width: 900px) {
+    .luxury-grid-4 {
+        grid-template-columns: 1fr 1fr; /* Turns into 2 columns on tablets */
+    }
+}
+
+@media (max-width: 500px) {
+    .luxury-grid-4 {
+        grid-template-columns: 1fr; /* Turns into 1 column on phones */
+    }
+}
+/* --- LUXURY 2x2 GRID --- */
+
+.luxury-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.luxury-cat-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 350px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.luxury-cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* The dark gradient at the bottom so text is readable */
+.luxury-cat-card .cat-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    z-index: 1;
+}
+
+.luxury-cat-card h3 {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif; /* Luxury serif font */
+    z-index: 2;
+    letter-spacing: 2px;
+}
+
+/* Hover Effect: Smooth zoom in when hovered */
+.luxury-cat-card:hover img {
+    transform: scale(1.08);
+}
+
+
+/* --- COVERFLOW SLIDERS --- */
+.coverflow-container {
+    position: relative;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.coverflow-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Base style for every slide in the carousel */
+.coverflow-slide {
+    position: absolute;
+    width: 400px;  /* <-- INCREASE THIS NUMBER (was 300px) */
+    height: 450px; /* <-- Leave this exactly the same */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.coverflow-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-label {
+    position: absolute;
+    bottom: -50px; /* Hidden below the card by default */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: #fff;
+    background: rgba(0,0,0,0.7);
+    padding: 15px 0;
+    transition: all 0.5s ease;
+    margin: 0;
+}
+
+/* --- JAVASCRIPT DYNAMIC POSITIONING --- */
+
+/* The Center (Active) Slide */
+.coverflow-slide.active {
+    transform: scale(1) translateX(0);
+    z-index: 5;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+/* Slide up the label when active */
+.coverflow-slide.active .slide-label {
+    bottom: 0;
+}
+
+/* The Slides Immediately Left and Right */
+/* The Slides Immediately Left and Right */
+.coverflow-slide.prev-1 {
+    /* Increase the negative percentage (e.g., from -65% to -75%) */
+    transform: scale(0.85) translateX(-75%);
+    z-index: 4;
+    opacity: 0.8;
+}
+.coverflow-slide.next-1 {
+    /* Increase the positive percentage (e.g., from 65% to 75%) */
+    transform: scale(0.85) translateX(75%);
+    z-index: 4;
+    opacity: 0.8;
+}
+
+/* The Slides on the Far Edges */
+.coverflow-slide.prev-2 {
+    /* Push these out further too (e.g., from -120% to -130%) */
+    transform: scale(0.7) translateX(-130%);
+    z-index: 3;
+    opacity: 0.4;
+}
+.coverflow-slide.next-2 {
+    /* Push these out further too (e.g., from 120% to 130%) */
+    transform: scale(0.7) translateX(130%);
+    z-index: 3;
+    opacity: 0.4;
+}
+
+/* Any Extra Slides (Hidden completely) */
+.coverflow-slide.hidden-slide {
+    transform: scale(0.5) translateX(0);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Utility classes for the section backgrounds */
+.bg-light {
+    background-color: #fcfcfc;
+}
